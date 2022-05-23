@@ -41,7 +41,7 @@ public class Main {
     }
     static void print_head(int[] array) {
         for (int i = 0; i < 10; i++) {
-                System.out.println(array[i]);
+            System.out.println(array[i]);
         }
     }
 
@@ -74,39 +74,39 @@ public class Main {
         print_head(sort.top_vals);
 
         start = System.currentTimeMillis();
-        sort.sort(copyArray(array),true,"quicksort");
+        sort.sort(copyArray(array),true,"heapsort");
         finish = System.currentTimeMillis();
         time = (float) (finish-start);
         //System.out.println("heap sort took "+time+" ms.");
         print_head(sort.top_vals);
         sort.flush();
-        sort.sort(copyArray(array),false,"quicksort");
+        sort.sort(copyArray(array),false,"heapsort");
         print_head(sort.top_vals);
 
 
         start = System.currentTimeMillis();
-        sort.topk(copyArray(array),k_test,true,"quicksort");
+        sort.topk(copyArray(array),k_test,true,"heapsort");
         finish = System.currentTimeMillis();
         time = (float) (finish-start);
         //System.out.println("TopK took "+time+" ms.");
         System.out.println(sort.top_inds.length + sort.top_vals.length);
         print_head(sort.top_vals);
         print_head(sort.top_inds);
-        sort.topk(copyArray(array),k_test,false,"quicksort");
+        sort.topk(copyArray(array),k_test,false,"heapsort");
         System.out.println(sort.top_inds.length + sort.top_vals.length);
         print_head(sort.top_vals);
         print_head(sort.top_inds);
 
 
         start = System.currentTimeMillis();
-        sort.fast_topk(copyArray(array),k_test,true,"quicksort");
+        sort.fast_topk(copyArray(array),k_test,true,"heapsort");
         finish = System.currentTimeMillis();
         time = (float) (finish-start);
         //System.out.println("Fast-TopK took "+time+" ms.");
         System.out.println(sort.top_inds.length + sort.top_vals.length);
         print_head(sort.top_vals);
         print_head(sort.top_inds);
-        sort.fast_topk(copyArray(array),k_test,false,"quicksort");
+        sort.fast_topk(copyArray(array),k_test,false,"heapsort");
         System.out.println(sort.top_inds.length + sort.top_vals.length);
         print_head(sort.top_vals);
         print_head(sort.top_inds);
