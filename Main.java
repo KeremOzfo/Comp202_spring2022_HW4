@@ -75,7 +75,7 @@ public class Main {
 
         t_array = copyArray(array); // to avoid time to copy, generate new one before the timing operations
         start = System.currentTimeMillis();
-        sort.sort(t_array,true,"quicksort");
+        sort.sort(t_array,true,"heapsort");
         finish = System.currentTimeMillis();
         time = (float) (finish-start);
         //System.out.println("heap sort took "+time+" ms.");
