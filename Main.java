@@ -41,22 +41,26 @@ public class Main {
     }
     static void print_head(int[] array) {
         for (int i = 0; i < 10; i++) {
-            System.out.println(array[i]);
+                System.out.println(array[i]);
         }
     }
 
 
     public static void main(String[] args) throws IOException {
-        int [] input = test_array("input.txt");
         int LENGTH = (int) 1E5; // equivalent of 10^(Ex)
         int maximum = (int) 1E6; // maximum integer in your array
         int minimum = -maximum; // minimum integer in your array
         int k =(int) 1E3; // topK "K" value
-        boolean test = true; // make it true for autograder else generates custom array
+
+        //autograder spesific
+        boolean test = true; // make it true for autograder
+        // you have to make it false to generate custom sized arrays for time analysis !
+        int k_test = (int) 1E3; // do not change it
+        int [] input = test_array("input.txt"); // length 1e5 you can comment out until submission
+        //
 
         int[] array = test ? input : randArray(LENGTH,minimum,maximum);
         Sort sort = new Sort();
-        int[] top_vals,top_inds;
 
 
         long start = System.currentTimeMillis();
@@ -68,45 +72,41 @@ public class Main {
         sort.flush();
         sort.sort(copyArray(array),false,"insertionsort");
         print_head(sort.top_vals);
-        sort.flush();
 
         start = System.currentTimeMillis();
-        sort.sort(copyArray(array),true,"heapsort");
+        sort.sort(copyArray(array),true,"quicksort");
         finish = System.currentTimeMillis();
         time = (float) (finish-start);
-        //System.out.println("Quicksort took "+time+" ms.");
+        //System.out.println("heap sort took "+time+" ms.");
         print_head(sort.top_vals);
         sort.flush();
-        sort.sort(copyArray(array),false,"heapsort");
+        sort.sort(copyArray(array),false,"quicksort");
         print_head(sort.top_vals);
-        sort.flush();
+
 
         start = System.currentTimeMillis();
-        sort.topk(copyArray(array),k,true,"heapsort");
+        sort.topk(copyArray(array),k_test,true,"quicksort");
         finish = System.currentTimeMillis();
         time = (float) (finish-start);
         //System.out.println("TopK took "+time+" ms.");
         System.out.println(sort.top_inds.length + sort.top_vals.length);
         print_head(sort.top_vals);
         print_head(sort.top_inds);
-        sort.flush();
-        sort.topk(copyArray(array),k,false,"heapsort");
+        sort.topk(copyArray(array),k_test,false,"quicksort");
         System.out.println(sort.top_inds.length + sort.top_vals.length);
         print_head(sort.top_vals);
         print_head(sort.top_inds);
-        sort.flush();
 
 
         start = System.currentTimeMillis();
-        sort.fast_topk(copyArray(array),k,true,"quicksort");
+        sort.fast_topk(copyArray(array),k_test,true,"quicksort");
         finish = System.currentTimeMillis();
         time = (float) (finish-start);
         //System.out.println("Fast-TopK took "+time+" ms.");
         System.out.println(sort.top_inds.length + sort.top_vals.length);
         print_head(sort.top_vals);
         print_head(sort.top_inds);
-        sort.flush();
-        sort.fast_topk(copyArray(array),k,false,"quicksort");
+        sort.fast_topk(copyArray(array),k_test,false,"quicksort");
         System.out.println(sort.top_inds.length + sort.top_vals.length);
         print_head(sort.top_vals);
         print_head(sort.top_inds);
