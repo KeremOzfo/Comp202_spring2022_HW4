@@ -23,7 +23,7 @@ public class Sort {
         ///  Generate indices
         return inds;
     }
-    private void hepsort(int[] array,int[] inds, boolean largest) {
+    private void heapsort(int[] array,int[] inds, boolean largest) {
         /*
         Implement heap sort, you  can use Java heap or you can implement your own helper function
          */
