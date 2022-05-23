@@ -25,8 +25,7 @@ public class Sort {
     }
     private void hepsort(int[] array,int[] inds, boolean largest) {
         /*
-        Implement heap sort, you should can use Java heap or additional funtions
-        you may remove inds if you do not sort inds as well but it is recommended
+        Implement heap sort, you  can use Java heap or you can implement your own helper function
          */
         this.vals = array; // you can change this
         this.inds = null; // change this if you sort indices as well
@@ -35,7 +34,6 @@ public class Sort {
     private void insertionSort (int[] array,int[] inds,boolean largest) {
         /*
         Implement insertion sort
-        you may remove inds if you do not sort inds as well but it is recommended
          */
         this.vals = array; // you can change this
         this.inds = null; // change this if you sort indices as well
