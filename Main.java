@@ -68,10 +68,10 @@ public class Main {
         long finish = System.currentTimeMillis();
         float time = (float) (finish-start);
         //System.out.println("insertion sort took "+time+" ms.");
-        print_head(sort.top_vals);
+        print_head(sort.vals);
         sort.flush();
         sort.sort(copyArray(array),false,"insertionsort");
-        print_head(sort.top_vals);
+        print_head(sort.vals);
 
         t_array = copyArray(array); // to avoid time to copy, generate new one before the timing operations
         start = System.currentTimeMillis();
@@ -79,10 +79,10 @@ public class Main {
         finish = System.currentTimeMillis();
         time = (float) (finish-start);
         //System.out.println("heap sort took "+time+" ms.");
-        print_head(sort.top_vals);
+        print_head(sort.vals);
         sort.flush();
         sort.sort(copyArray(array),false,"heapsort");
-        print_head(sort.top_vals);
+        print_head(sort.vals);
 
         t_array = copyArray(array);
         start = System.currentTimeMillis();
@@ -90,13 +90,13 @@ public class Main {
         finish = System.currentTimeMillis();
         time = (float) (finish-start);
         //System.out.println("TopK took "+time+" ms.");
-        System.out.println(sort.top_inds.length + sort.top_vals.length);
-        print_head(sort.top_vals);
-        print_head(sort.top_inds);
+        System.out.println(sort.inds.length + sort.vals.length);
+        print_head(sort.vals);
+        print_head(sort.inds);
         sort.topk(copyArray(array),k_test,false,"heapsort");
-        System.out.println(sort.top_inds.length + sort.top_vals.length);
-        print_head(sort.top_vals);
-        print_head(sort.top_inds);
+        System.out.println(sort.inds.length + sort.vals.length);
+        print_head(sort.vals);
+        print_head(sort.inds);
 
         t_array = copyArray(array);
         start = System.currentTimeMillis();
@@ -104,13 +104,13 @@ public class Main {
         finish = System.currentTimeMillis();
         time = (float) (finish-start);
         //System.out.println("Fast-TopK took "+time+" ms.");
-        System.out.println(sort.top_inds.length + sort.top_vals.length);
-        print_head(sort.top_vals);
-        print_head(sort.top_inds);
+        System.out.println(sort.inds.length + sort.vals.length);
+        print_head(sort.vals);
+        print_head(sort.inds);
         sort.fast_topk(copyArray(array),k_test,false,"heapsort");
-        System.out.println(sort.top_inds.length + sort.top_vals.length);
-        print_head(sort.top_vals);
-        print_head(sort.top_inds);
+        System.out.println(sort.inds.length + sort.vals.length);
+        print_head(sort.vals);
+        print_head(sort.inds);
 
     }
 
