@@ -1,10 +1,5 @@
-import com.sun.security.auth.NTDomainPrincipal;
-
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Random;
-import java.util.ArrayList;
-import java.util.List;
 import java.io.BufferedReader;
 import java.io.FileReader;
 public class Main {
@@ -44,17 +39,9 @@ public class Main {
         bf.close();
         return arr;
     }
-    public void test(int[] array) {
-        int [] ary_cpy = copyArray(array);
-        Sort sort = new Sort();
-        sort.sort(ary_cpy,true,"insertionsort");
-        for (int i = 0; i < 20; i++) {
-            System.out.println(sort.top_vals[i]);
-        }
-        sort.flush();
-        sort.sort(ary_cpy,false,"insertionsort");
-        for (int i = 0; i < 20; i++) {
-            System.out.println(sort.top_vals[i]);
+    static void print_head(int[] array) {
+        for (int i = 0; i < 10; i++) {
+            System.out.println(array[i]);
         }
     }
 
@@ -64,81 +51,65 @@ public class Main {
         int LENGTH = (int) 1E5; // equivalent of 10^(Ex)
         int maximum = (int) 1E6; // maximum integer in your array
         int minimum = -maximum; // minimum integer in your array
-        boolean largest = false; // for getting largest or smallest values.
         int k =(int) 1E3; // topK "K" value
-        int[] array = randArray(LENGTH,minimum,maximum);
-        int[] array_cpy = copyArray(array);
-        int [] input_cpy = copyArray(input);
+        boolean test = true; // make it true for autograder else generates custom array
+
+        int[] array = test ? input : randArray(LENGTH,minimum,maximum);
         Sort sort = new Sort();
         int[] top_vals,top_inds;
 
+
         long start = System.currentTimeMillis();
-        sort.sort(array_cpy,largest,"insertionsort");
-        top_vals = sort.top_vals;
+        sort.sort(copyArray(array),true,"insertionsort");
         long finish = System.currentTimeMillis();
         float time = (float) (finish-start);
+        //System.out.println("insertion sort took "+time+" ms.");
+        print_head(sort.top_vals);
         sort.flush();
-        //System.out.println("insertion sort values");
-        //System.out.println(Arrays.toString(top_vals));
-        System.out.println("insertion sort took "+time+" ms.");
-        array_cpy = copyArray(array);
-        input_cpy = copyArray(input);
+        sort.sort(copyArray(array),false,"insertionsort");
+        print_head(sort.top_vals);
+        sort.flush();
+
+        start = System.currentTimeMillis();
+        sort.sort(copyArray(array),true,"heapsort");
+        finish = System.currentTimeMillis();
+        time = (float) (finish-start);
+        //System.out.println("Quicksort took "+time+" ms.");
+        print_head(sort.top_vals);
+        sort.flush();
+        sort.sort(copyArray(array),false,"heapsort");
+        print_head(sort.top_vals);
+        sort.flush();
+
+        start = System.currentTimeMillis();
+        sort.topk(copyArray(array),k,true,"heapsort");
+        finish = System.currentTimeMillis();
+        time = (float) (finish-start);
+        //System.out.println("TopK took "+time+" ms.");
+        System.out.println(sort.top_inds.length + sort.top_vals.length);
+        print_head(sort.top_vals);
+        print_head(sort.top_inds);
+        sort.flush();
+        sort.topk(copyArray(array),k,false,"heapsort");
+        System.out.println(sort.top_inds.length + sort.top_vals.length);
+        print_head(sort.top_vals);
+        print_head(sort.top_inds);
+        sort.flush();
 
 
         start = System.currentTimeMillis();
-        sort.sort(array_cpy,largest,"quicksort");
-        top_vals = sort.top_vals;
+        sort.fast_topk(copyArray(array),k,true,"quicksort");
         finish = System.currentTimeMillis();
         time = (float) (finish-start);
+        //System.out.println("Fast-TopK took "+time+" ms.");
+        System.out.println(sort.top_inds.length + sort.top_vals.length);
+        print_head(sort.top_vals);
+        print_head(sort.top_inds);
         sort.flush();
-        //System.out.println("Quicksort values");
-        //System.out.println(Arrays.toString(top_vals));
-        System.out.println("Quicksort took "+time+" ms.");
-        array_cpy = copyArray(array);
-        input_cpy = copyArray(input);
-
-
-        start = System.currentTimeMillis();
-        sort.topk(array_cpy,k,largest,"quicksort");
-        top_vals = sort.top_vals;
-        top_inds = sort.top_inds;
-        finish = System.currentTimeMillis();
-        time = (float) (finish-start);
-        sort.flush();
-        //System.out.println("TopK values");
-        //System.out.println(Arrays.toString(top_vals));
-        //System.out.println("TopK indices");
-        //System.out.println(Arrays.toString(top_inds));
-        System.out.println("TopK took "+time+" ms.");
-        array_cpy = copyArray(array);
-        input_cpy = copyArray(input);
-
-
-        start = System.currentTimeMillis();
-        sort.fast_topk(array_cpy,k,largest,"quicksort");
-        top_vals = sort.top_vals;
-        top_inds = sort.top_inds;
-        finish = System.currentTimeMillis();
-        time = (float) (finish-start);
-        //System.out.println("Fast-TopK values");
-        //System.out.println(Arrays.toString(top_vals));
-        //System.out.println("Fast-TopK indices");
-        //System.out.println(Arrays.toString(top_inds));
-        System.out.println("Fast-TopK took "+time+" ms.");
-        input_cpy = copyArray(input);
-
-
-                /*
-        try {
-            FileWriter writer = new FileWriter("input.txt");
-            for(int val: array_cpy) {
-                writer.write(val + System.lineSeparator());
-            }
-            writer.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        */
+        sort.fast_topk(copyArray(array),k,false,"quicksort");
+        System.out.println(sort.top_inds.length + sort.top_vals.length);
+        print_head(sort.top_vals);
+        print_head(sort.top_inds);
 
     }
 
