@@ -12,6 +12,7 @@ public class Sort {
     private void swap(int[] arr, int i, int j)
     {
         /// You should implement a swap function between the 2 indices
+        // you may delete this function if not needed
     }
 
     public int[] getIndices(int size){
@@ -22,20 +23,22 @@ public class Sort {
         ///  Generate indices
         return inds;
     }
-    private void quicksort(int[] array,int[] inds, boolean largest) {
+    private void hepsort(int[] array,int[] inds, boolean largest) {
         /*
-        Implement quicksort, you should can use Java heap or additional funtions
+        Implement heap sort, you should can use Java heap or additional funtions
+        you may remove inds if you do not sort inds as well but it is recommended
          */
         this.vals = array; // you can change this
-        this.inds = null; // change this
+        this.inds = null; // change this if you sort indices as well
     }
 
     private void insertionSort (int[] array,int[] inds,boolean largest) {
         /*
         Implement insertion sort
+        you may remove inds if you do not sort inds as well but it is recommended
          */
         this.vals = array; // you can change this
-        this.inds = null; // change this
+        this.inds = null; // change this if you sort indices as well
     }
     public void sort(int[] array,boolean largest, String alg) throws Exception{
         /*
@@ -50,8 +53,8 @@ public class Sort {
         else {
             inds = this.inds;
         }
-        if (alg.equals("quicksort")) {
-            quicksort(array, inds, largest,0, array.length - 1);
+        if (alg.equals("heapsort")) {
+            heapsort(array, inds, largest);
         }
         else if(alg.equals("insertionsort")) {
             insertionSort(array,inds,largest);
