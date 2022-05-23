@@ -62,7 +62,7 @@ public class Main {
         int[] array = test ? input : randArray(LENGTH,minimum,maximum);
         Sort sort = new Sort();
 
-        int [] t_array = copyArray(array);
+        int [] t_array = copyArray(array); // to avoid time to copy, generate new one before the timing operations
         long start = System.currentTimeMillis();
         sort.sort(t_array,true,"insertionsort");
         long finish = System.currentTimeMillis();
