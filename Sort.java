@@ -62,7 +62,7 @@ public class Sort {
     }
 
     public void topk(int[] array,int k,boolean largest, String alg){
-
+        flush();
         /*
         implement topk method
          */
@@ -71,11 +71,11 @@ public class Sort {
     }
 
     public void fast_topk(int[] array,int k, boolean largest,String alg){
+        flush();
         /*
         Assume that, k <= array.length / 50
         for every fast_topk operation
         */
-
         this.vals = array; // you can change this
         this.inds = null; // change this
     }
