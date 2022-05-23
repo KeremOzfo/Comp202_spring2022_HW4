@@ -64,7 +64,7 @@ public class Main {
 
         int [] t_array = copyArray(array);
         long start = System.currentTimeMillis();
-        sort.sort(copyArray(array),true,"insertionsort");
+        sort.sort(t_array,true,"insertionsort");
         long finish = System.currentTimeMillis();
         float time = (float) (finish-start);
         //System.out.println("insertion sort took "+time+" ms.");
